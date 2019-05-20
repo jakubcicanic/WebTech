@@ -1,0 +1,27 @@
+Jano : generovanie : tabu¾ky pre stránky, testovacie csv súbory
+
+Kadı svoju podstránku.. skontorlova celú funkcionalitu
+
+Miro + jakub pozrie koláèovı graf 
+
+Tono spravi preklady
+
+VŠETCI H¾ada chyby a písa ich od konca tohoto súboru
+
+//
+(Riso -> 2:28 AM)
+Nahadzovanie Teamov do databazy cez csv funguje
+Admin si moze prepinat medzi kazdym teamom a pridat im body ak este ziadne nemaju
+ak body maju tak vypise kolko bodov ma dany team(treba dorobit update bodov)
+clenovia teamov v databaze su v tabulke tim 
+a na body pre teamy je dalsia tabulka timy_body
+btw admin login je -> username : admin, heslo : admin
+//
+//
+(Miro -> 10:55)
+Pozeral som ten koláèovı graf a nemal by to by problém sú na to asi 2 api a aj návody na youtube take to
+môesm spravi len potrebujem údaje, z ktorıch to bude treba vyhotovi.
+//
+
+
+

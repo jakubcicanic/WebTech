@@ -1,0 +1,6 @@
+﻿ID;meno;Email;login;verejnaIP;privatnaIP;ssh;http;https;misc1;misc2
+12345;Janko Hrasko;xhraskoj@is.stuba.sk;xhraskoja;147.175.121.210;192.168.0.1;2201;8001;4401;9001;1901
+23456;Mirko Hrasko;xhraskom@is.stuba.sk;xhraskom;147.175.121.210;192.168.0.2;2201;8001;4401;9001;1901
+34567;Tonko Hrasko;xhraskot@is.stuba.sk;xhraskot;147.175.121.210;192.168.0.3;2201;8001;4401;9001;1901
+45678;Risko Hrasko;xhraskor@is.stuba.sk;xhraskor;147.175.121.210;192.168.0.4;2201;8001;4401;9001;1901
+56789;Kubko Hrasko;xhraskok@is.stuba.sk;xhraskok;147.175.121.210;192.168.0.5;2201;8001;4401;9001;1901
