@@ -10,26 +10,12 @@ require_once('config.php');
 if (!isset($_SESSION['lang'])) {
     $_SESSION['lang']=0;
 }
-//$_SESSION['lang']=1;
+
 unset($_SESSION['logged']);
 unset($_SESSION['admin']);
 
-//require_once "config.php";
 
-//$loginURL = $gClient->createAuthUrl();
 $_SESSION['message'] = '';
-
-/*$servername = "localhost";
-$username = "prsp";
-$password = "133625";
-$dbName = "accounts";*/
-
-//$mysqli = new mysqli($dbUrl, $dbLogin, $dbPass, $dbName);
-//mysqli_set_charset($mysqli, 'utf8');
-
-//if ($mysqli->connect_error) {
-   // die("Connection failed: " . $mysqli->connect_error);
-//
 
 
 

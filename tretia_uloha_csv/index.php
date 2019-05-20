@@ -40,9 +40,10 @@ if (!isset($_SESSION['logged'])) {
                         //echo '<li><a href="logout.php">'.$language[$_SESSION["lang"]][1].'</a></li>';
                         echo '<li><a href="../state.php">'.$language[$_SESSION["lang"]][2].'</a></li>';
                         echo '<li><a href="../rating.php">'.$language[$_SESSION["lang"]][3].'</a></li>';
-                        echo '<li><a href="../tretia_uloha_csv/index.php" class="active">Miro</a></li>';
+                        echo '<li><a href="../tretia_uloha_csv/index.php" >'.$language[$_SESSION["lang"]][69].'</a></li>';
                         if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
                             echo '<li><a href="../generating.php">'.$language[$_SESSION["lang"]][4].'</a></li>';
+                            echo '<li><a href="mail.php">Mail</a></li>';
                         }
                     }
                     ?>
@@ -56,11 +57,11 @@ if (!isset($_SESSION['logged'])) {
             <?php
             if($_SESSION['lang'] == 1)
             {
-                echo '<li><a href="../langSwitch.php/?redirectedFrom=0"><img src="https://lipis.github.io/flag-icon-css/flags/4x3/sk.svg" height="24" width="32" ></a></li>';
+                echo '<li><a href="../langSwitch.php/?redirectedFrom=5"><img src="https://lipis.github.io/flag-icon-css/flags/4x3/sk.svg" height="24" width="32" ></a></li>';
             }
             else if ($_SESSION['lang'] == 0)
             {
-                echo '<li><a href="../langSwitch.php/?redirectedFrom=0"><img src="https://lipis.github.io/flag-icon-css/flags/4x3/gb.svg" height="24" width="32"></a></li>';
+                echo '<li><a href="../langSwitch.php/?redirectedFrom=5"><img src="https://lipis.github.io/flag-icon-css/flags/4x3/gb.svg" height="24" width="32"></a></li>';
             }
             ?>
         </ul>
@@ -106,7 +107,7 @@ if (!isset($_SESSION['logged'])) {
     <br>
     <input type="text" name="char">
     <br>
-    <?phpecho $language[$_SESSION["lang"]][18];?>
+    <?php echo $language[$_SESSION["lang"]][18];?>
     <br>
     <input type="file" name="sel_file">
     <br>

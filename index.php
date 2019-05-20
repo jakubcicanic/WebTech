@@ -44,9 +44,10 @@ setupDatabase($dbUrl, $dbLogin, $dbPass, $dbName);
                         //echo '<li><a href="logout.php">'.$language[$_SESSION["lang"]][1].'</a></li>';
                         echo '<li><a href="state.php">'.$language[$_SESSION["lang"]][2].'</a></li>';
                         echo '<li><a href="rating.php">'.$language[$_SESSION["lang"]][3].'</a></li>';
-                        echo '<li><a href="tretia_uloha_csv/index.php">Miro</a></li>';
+                        echo '<li><a href="tretia_uloha_csv/index.php">Nový</a></li>';
                         if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
                             echo '<li><a href="generating.php">'.$language[$_SESSION["lang"]][4].'</a></li>';
+                            echo '<li><a href="tretia_uloha_csv/mail.php">Mail</a></li>';
                         }
                     }
                     ?>

@@ -1,8 +1,9 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
 require('db.php');
+require_once('../lang.php');
 
 if(!isset($_SESSION["logged"])|| $_SESSION["logged"]==null){
     header("location: ../login.php");
@@ -10,11 +11,15 @@ if(!isset($_SESSION["logged"])|| $_SESSION["logged"]==null){
 ?>
 <!DOCTYPE html>
 <html>
-<head><title>Mail</title>
+<head><title>Finálne zadanie</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/btn.css">
+    <link rel="stylesheet" type="text/css" href="../css/table.css">
+
 </head>
 <body>
 
@@ -28,8 +33,16 @@ if(!isset($_SESSION["logged"])|| $_SESSION["logged"]==null){
     .tab-user{
         padding: 1em;
     }
-    
-   .txt-l{ text-align:left;}
+
+    .error-message{
+        position: fixed;
+        left: 63%;
+        right: 2%;
+        width: 35%;
+        z-index: 10;
+    }
+
+    .txt-l{ text-align:left;}
    .txt-c{ text-align:center;}
    .txt-r{ text-align:right;}
    .txt-j{ text-align:justify;}
@@ -48,16 +61,72 @@ if(!isset($_SESSION["logged"])|| $_SESSION["logged"]==null){
    div#editor.hide{height:0px; overflow:hidden;}
     
 </style>
+<header>
 
-<h1>Odoslanie mailu</h1>
+    <nav class="main-nav">
+        <ul>
+            <li>
+                <ul>
+                    <?php
+                    if (!isset($_SESSION['logged'])) {
+                        echo '<li><a href="../index.php" class = "active">'.$language[$_SESSION["lang"]][6].'</a></li>';
+                        echo '<li><a href="../login.php">'.$language[$_SESSION["lang"]][0].'</a></li>';
+                    } else {
+                        echo '<li><a href="../index.php" class = "active">'.$language[$_SESSION["lang"]][6].'</a></li>';
+                        //echo '<li><a href="logout.php">'.$language[$_SESSION["lang"]][1].'</a></li>';
+                        echo '<li><a href="../state.php">'.$language[$_SESSION["lang"]][2].'</a></li>';
+                        echo '<li><a href="../rating.php">'.$language[$_SESSION["lang"]][3].'</a></li>';
+                        echo '<li><a href="index.php">'.$language[$_SESSION["lang"]][69].'</a></li>';
+                        if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
+                            echo '<li><a href="../generating.php">'.$language[$_SESSION["lang"]][4].'</a></li>';
+                            echo '<li><a href="../tretia_uloha_csv/mail.php">Mail</a></li>'; 
+                        }
+                    }
+                    ?>
+                </ul>
+            </li>
+        </ul>
+    </nav>
 
-    Šablóna: <input type="radio" name="type" value="text" id="text" checked>Plain text
+    <nav class="main-nav3">
+        <ul>
+            <?php
+            if($_SESSION['lang'] == 1)
+            {
+                echo '<li><a href="../langSwitch.php/?redirectedFrom=6"><img src="https://lipis.github.io/flag-icon-css/flags/4x3/sk.svg" height="24" width="32" ></a></li>';
+            }
+            else if ($_SESSION['lang'] == 0)
+            {
+                echo '<li><a href="../langSwitch.php/?redirectedFrom=6"><img src="https://lipis.github.io/flag-icon-css/flags/4x3/gb.svg" height="24" width="32"></a></li>';
+            }
+            ?>
+        </ul>
+    </nav>
+
+    <nav class="main-nav2">
+        <ul>
+
+            <?php
+            if (isset($_SESSION['logged'])) {
+                echo '<li><a href="logout.php" style="margin-top: 50px;">'.$language[$_SESSION["lang"]][1].'</a></li>';
+                echo '<li><a href="index.php">'.$_SESSION["loggedUserName"].'</a></li>';
+            }
+
+            ?>
+        </ul>
+    </nav>
+
+</header>
+
+<h1><?php echo $language[$_SESSION["lang"]][77];?></h1>
+
+    <?php echo $language[$_SESSION["lang"]][70];?> <input type="radio" name="type" value="text" id="text" checked>Plain text
              <input type="radio" name="type" value="html" id="html">HTML<br>
-    Výber suboru súdajmi: <input type="file" name="csv_file"  id="csv_file">
-    Názov správy: <input type="text" name="char" id="char">
-    Výber prílohy: <input type="file" name="sel_file"><br>
+    <?php echo $language[$_SESSION["lang"]][72];?><input type="file" name="csv_file"  id="csv_file">
+    <?php echo $language[$_SESSION["lang"]][74];?><input type="text" name="char" id="char">
+   <?php echo $language[$_SESSION["lang"]][75];?><input type="file" name="sel_file"><br>
 
-    Komu poslať:
+    <?php echo $language[$_SESSION["lang"]][78];?>
     <ul class="nav nav-tabs" id="users_from_file" >
     </ul>
 
@@ -67,25 +136,68 @@ if(!isset($_SESSION["logged"])|| $_SESSION["logged"]==null){
     <div contenteditable="true" id="sablona">
     </div>
 
-    <input type="submit" name="Submit" id="submit">
+    <input type="submit" name="Submit" id="submit" value="<?php echo $language[$_SESSION["lang"]][19];?>">
     
  <div id="editor" class="hide" style="max-width:700px; margin: 0 auto;">
   <div>
     <div style="display:inline-block; position:relative; width:150px;">
-      <h3>Ofarbenie textu (označeného myšou)</h3>
+      <h3><?php echo $language[$_SESSION["lang"]][79];?></h3>
     </div>
-    <button class="text-color black" data-color="black" title="Ofarbenie označeného textu čiernou farbou po kliku na tlačidlo"></button>
-    <button class="text-color red" data-color="red" title="Ofarbenie označeného textu červenou farbou po kliku na tlačidlo"></button>
-    <button class="text-color green" data-color="green" title="Ofarbenie označeného textu zelenou farbou po kliku na tlačidlo"></button>
-    <button class="text-color blue" data-color="blue" title="Ofarbenie označeného textu modrou farbou po kliku na tlačidlo"></button>
+    <button class="text-color black" data-color="black" title="<?php echo $language[$_SESSION["lang"]][80];?>"></button>
+    <button class="text-color red" data-color="red" title="<?php echo $language[$_SESSION["lang"]][81];?>"></button>
+    <button class="text-color green" data-color="green" title="<?php echo $language[$_SESSION["lang"]][82];?>"></button>
+    <button class="text-color blue" data-color="blue" title="<?php echo $language[$_SESSION["lang"]][83];?>"></button>
   </div>
  </div>
 <div class="error-message" id="div-error">
 </div>
 
+<?php
+$history = getHistory();
+?>
+<section>
+    <div class="container">
+        <h2><?php echo $language[$_SESSION["lang"]][76];?></h2>
+        <table class="table table-hover table-sortable" >
+            <thead>
+            <tr>
+                <th><?php echo $language[$_SESSION["lang"]][36];?></th>
+                <th><?php echo $language[$_SESSION["lang"]][9];?></th>
+                <th><?php echo $language[$_SESSION["lang"]][71];?></th>
+                <th><?php echo $language[$_SESSION["lang"]][70];?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+
+            for($i = 0; $i<sizeof($history); $i++){
+
+            echo '<tr><td>'.$history[$i]["Meno_Studenta"].'</td>
+               <td>'.$history[$i]["Predmet_Spravy"].'</td>
+               <td>'.$history[$i]["Datum_odoslania"].'</td>
+               <td>'.$history[$i]["id_sablony"].'</td>
+            </tr>';
+           } ?>
+
+            </tbody>
+        </table>
+    </div>
+
+</section>
+
     
 </body>
 <script>
+    function showErrorMessage(message, color){
+        error = "<div class=\"alert "+ color +" alert-dismissible fade show animated fadeInUp duration-2s \"  role=\"alert\">\n" +
+            "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+            "                <span aria-hidden=\"true\">&times;</span>\n" +
+            "            </button>\n" +
+            "            <span> "+message+" </span>\n" +
+            "        </div>";
+        return error;
+    }
+
     $(document).ready(function()
     {
         $("#submit").click(function () {
@@ -119,6 +231,7 @@ if(!isset($_SESSION["logged"])|| $_SESSION["logged"]==null){
                         message = "Vyskytla sa chyba!. "+response;
                         stav = "alert-danger";
                     }
+                    console.log(response);
                     $("#div-error").html(showErrorMessage(message, stav));
                     $("#div-error .alert").delay(3000).fadeOut(1000, function () { $(this).remove(); });
 
@@ -267,15 +380,7 @@ if(!isset($_SESSION["logged"])|| $_SESSION["logged"]==null){
         
       });
 
-        function showErrorMessage(message, color){
-            error = "<div class=\"alert "+ color +" alert-dismissible fade show animated fadeInUp duration-2s \"  role=\"alert\">\n" +
-                "            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
-                "                <span aria-hidden=\"true\">&times;</span>\n" +
-                "            </button>\n" +
-                "            <span> "+message+" </span>\n" +
-                "        </div>";
-            return error;
-        }
     });
 </script>
+<script src="tableSorter.js"></script>
 </html>

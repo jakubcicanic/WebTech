@@ -2,12 +2,16 @@
 session_start();
 require_once('lang.php');
 require_once('config.php');
+require_once('functions/createDatabase.php');
 
 
 if (!isset($_SESSION['logged'])) {
     $_SESSION['errorMsg'] = $language[$_SESSION["lang"]]['e0'];
     header('location: index.php');
 }
+
+
+
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -36,9 +40,10 @@ if (!isset($_SESSION['logged'])) {
                        // echo '<li><a href="logout.php">'.$language[$_SESSION["lang"]][1].'</a></li>';
                         echo '<li><a href="state.php" class = "active">'.$language[$_SESSION["lang"]][2].'</a></li>';
                         echo '<li><a href="rating.php">'.$language[$_SESSION["lang"]][3].'</a></li>';
-                        echo '<li><a href="tretia_uloha_csv/index.php">Miro</a></li>';
+                        echo '<li><a href="tretia_uloha_csv/index.php" >'.$language[$_SESSION["lang"]][69].'</a></li>';
                         if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
                             echo '<li><a href="generating.php">'.$language[$_SESSION["lang"]][4].'</a></li>';
+                            echo '<li><a href="tretia_uloha_csv/mail.php">Mail</a></li>';
                         }
                     }
                     ?>
@@ -161,7 +166,7 @@ if (!isset($_SESSION['logged'])) {
                             </form>
                             </td>
                             <td>
-                            <form method="post" action="functions/downloadPdf.php">
+                            <form method="post" action="functions/downloadPDF/downloadPdf.php">
                             
                                 <input type="hidden" name="predmet" value="' . $row['Predmet'] . '" >
                                     

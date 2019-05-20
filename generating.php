@@ -72,6 +72,8 @@ $result11 = mysqli_query($mysqli,$query11);
 $result12 = mysqli_query($mysqli,$query12);
 $result13 = mysqli_query($mysqli,$query13);
 $result14 = mysqli_query($mysqli,$query14);
+$pocet2= null;
+$pocet = null;
 while($row11 = mysqli_fetch_array($result11))
 {
     $pocet2 = $row11["COUNT(*)"];
@@ -104,26 +106,26 @@ while($row = mysqli_fetch_array($result1))
         function drawChart()
         {
             var data = google.visualization.arrayToDataTable([
-                ['Popis', 'Pocet'],
+                ['Popis', 'Počet'],
                 <?php
                 //toto treba opravit a tahat udaje y $row, ktore potrebujem...to co taham je blbost
 
                 while($row2 = mysqli_fetch_array($result2))
                 {
-                    echo "['Suhlasi', ".$row2["count(*)"]."],";
+                    echo "['Študent prijal', ".$row2["count(*)"]."],";
                 }
                 while($row3 = mysqli_fetch_array($result3))
                 {
-                    echo "['Nesuhlasi', ".$row3["count(*)"]."],";
+                    echo "['Študent nesúhlasí', ".$row3["count(*)"]."],";
                 }
                 while($row4 = mysqli_fetch_array($result4))
                 {
-                    echo "['Nevyjadreny', ".$row4["count(*)"]."]";
+                    echo "['Nevyjadrený', ".$row4["count(*)"]."]";
                 }
                 ?>
             ]);
             var options = {
-                title: "Počet ľudí v predmete <?php echo $pocet; ?>",
+                title: "<?php echo $language[$_SESSION["lang"]][60] . $pocet; ?>",
                 is3D:true
                 //pieHole: 0.4
             };
@@ -135,20 +137,20 @@ while($row = mysqli_fetch_array($result1))
         function drawChart2()
         {
             var data = google.visualization.arrayToDataTable([
-                ['Popis', 'Pocet'],
+                ['Popis', 'Počet'],
                 <?php
                 //toto treba opravit a tahat udaje y $row, ktore potrebujem...to co taham je blbost
                 while($row12 = mysqli_fetch_array($result12))
                 {
-                    echo "['Uzavrete timy', ".$row12["count(*)"]."],";
+                    echo "['Rozdelenie bodov pre tím schválené', ".$row12["count(*)"]."],";
                 }
                 while($row13 = mysqli_fetch_array($result13))
                 {
-                    echo "['Treba sa vyjadrit', ".$row13["COUNT(*)"]."],";
+                    echo "['Nevyjadrený', ".$row13["COUNT(*)"]."],";
                 }
                 while($row14 = mysqli_fetch_array($result14))
                 {
-                    echo "['Tymi s nevyjadrenymi študentami', ".$row14["count(DISTINCT tim)"]."],";
+                    echo "['Čaká sa na rozdelenie bodov v tíme', ".$row14["count(DISTINCT tim)"]."],";
                 }
                 ?>
             ]);

@@ -72,7 +72,24 @@ session_start();
             66 => 'Počet tímov',
             67 => 'Počet',
             68 => 'Popis',
-
+			69 => 'Nový',
+			70 => 'Šablóna',
+			71 => 'Dátum',
+			72 => 'Výber súboru s údajmi:',
+			73 => 'Nie je vybratý žiaden súbor.',
+			74 => 'Názov správy:',
+			75 => 'Výber prílohy:',
+			76 => 'História správ',
+			77 => 'Odoslanie mailu',
+			78 => 'Príjemca mailu',
+			79 => 'Ofarbenie textu (označeného myšou)',
+			80 => 'Ofarbenie označeného textu čiernou farbou po kliku na tlačidlo',
+			81 => 'Ofarbenie označeného textu červenou farbou po kliku na tlačidlo',
+			82 => 'Ofarbenie označeného textu zelenou farbou po kliku na tlačidlo',
+			83 => 'Ofarbenie označeného textu modrou farbou po kliku na tlačidlo',
+			
+			
+			
 			
 			
             'e0' => 'Pre navštívenie tejto stránky sa musíte prihlásiť'
@@ -141,11 +158,28 @@ session_start();
 			59 => 'Team Points Distribution Not Approved Yet',
 			60 => 'Team Points Distribution Approved',
 			61 => 'Team',
-            64 => 'Unspoken',
-            65 => 'The number of people in the subject',
+			62 => 'Open',
+            63 => 'Print in pdf',
+            64 => 'Unresolved',
+            65 => 'The number of students signed in to course',
             66 => 'Number of teams',
             67 => 'Count',
             68 => 'Description',
+			69 => 'Import',
+			70 => 'Template',
+			71 => 'Date',
+			72 => 'Select File:',
+			73 => 'No file chosen yet.',
+			74 => 'Message Title:',
+			75 => 'Select Attachement:',
+			76 => 'History of messages',
+			77 => 'Mail Sending',
+			78 => 'Mail Recipient',
+			79 => 'Text color (selected)',
+			80 => 'Selected Text to Black Color',
+			81 => 'Selected Text to Red Color',
+			82 => 'Selected Text to Green Color',
+			83 => 'Selected Text to Blue Color',
 			
 			
 

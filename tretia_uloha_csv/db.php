@@ -18,7 +18,6 @@ function getData($typ)
     $result = $mysqli->query($sql);
     while($row = $result->fetch_assoc()){
         array_push($data, $row["text"]);
-       // $str .= $row["text"];
     }
     return json_encode($data);
 }
@@ -31,6 +30,18 @@ function postHistory($meno, $predmet, $sablona){
   $sql = 'INSERT INTO `historia`(`Datum_odoslania`, `Meno_Studenta`, `Predmet_Spravy`, `id_sablony`) 
   VALUES (now(), "'.$meno.'", "'.$predmet.'", '.$sablona.')';
   $mysqli->query($sql) or die($mysqli->error);
+}
+
+function getHistory()
+{
+    global $mysqli;
+    $data = [];
+    $sql = "SELECT * FROM historia";
+    $result = $mysqli->query($sql);
+    while($row = $result->fetch_assoc()){
+        array_push($data, $row);
+    }
+    return $data;
 }
 
 ?>
